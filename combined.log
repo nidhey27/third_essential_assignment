@@ -1,0 +1,44 @@
+2021-12-02T07:20:13.261Z [info]: App is UP and Running at PORT: 3000
+2021-12-02T07:20:13.351Z [info]: Drop and re-sync db.
+2021-12-02T07:21:34.135Z [info]: App is UP and Running at PORT: 3000
+2021-12-02T07:21:34.227Z [info]: Drop and re-sync db.
+2021-12-02T07:22:12.043Z [info]: App is UP and Running at PORT: 3000
+2021-12-02T07:22:12.132Z [info]: Drop and re-sync db.
+2021-12-02T07:22:36.036Z [info]: App is UP and Running at PORT: 3000
+2021-12-02T07:22:36.135Z [info]: Drop and re-sync db.
+2021-12-02T07:22:43.060Z [info]: App is UP and Running at PORT: 3000
+2021-12-02T07:22:43.148Z [info]: Drop and re-sync db.
+2021-12-02T07:23:11.370Z [info]: App is UP and Running at PORT: 3000
+2021-12-02T07:23:11.464Z [info]: Drop and re-sync db.
+2021-12-02T07:23:14.209Z [info]: App is UP and Running at PORT: 3000
+2021-12-02T07:23:14.533Z [info]: Drop and re-sync db.
+2021-12-02T07:23:16.671Z [info]: ::1 - - [02/Dec/2021:07:23:16 +0000] "GET /api/user/11 HTTP/1.1" 304 - "http://localhost:3000/form" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36"
+
+2021-12-02T07:24:41.612Z [info]: ::1 - - [02/Dec/2021:07:24:41 +0000] "PUT /api/user/update/11 HTTP/1.1" 200 42 "http://localhost:3000/form" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36"
+
+2021-12-02T07:24:42.651Z [info]: ::1 - - [02/Dec/2021:07:24:42 +0000] "GET /form HTTP/1.1" 304 - "http://localhost:3000/form" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36"
+
+2021-12-02T07:24:42.978Z [info]: ::1 - - [02/Dec/2021:07:24:42 +0000] "GET /api/user HTTP/1.1" 200 1204 "http://localhost:3000/form" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36"
+
+02-12-21 12:55:24 [info]: App is UP and Running at PORT: 3000
+02-12-21 12:55:24 [info]: Drop and re-sync db.
+02-12-21 12:55:31 [info]: App is UP and Running at PORT: 3000
+02-12-21 12:55:31 [info]: Drop and re-sync db.
+02-12-21 12:55:48 [info]: ::1 - - [02/Dec/2021:07:25:48 +0000] "DELETE /api/user/delete/11 HTTP/1.1" 200 42 "http://localhost:3000/form" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36"
+
+02-12-21 12:55:49 [info]: ::1 - - [02/Dec/2021:07:25:49 +0000] "GET /form HTTP/1.1" 304 - "http://localhost:3000/form" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36"
+
+02-12-21 12:55:49 [info]: ::1 - - [02/Dec/2021:07:25:49 +0000] "GET /api/user HTTP/1.1" 200 963 "http://localhost:3000/form" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36"
+
+02-12-21 12:57:01 [info]: ::1 - - [02/Dec/2021:07:27:01 +0000] "GET /api/user/9 HTTP/1.1" 200 241 "http://localhost:3000/form" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36"
+
+02-12-21 12:57:16 [info]: App is UP and Running at PORT: 3000
+02-12-21 12:57:16 [info]: Drop and re-sync db.
+02-12-21 12:57:21 [info]: ::1 - - [02/Dec/2021:07:27:21 +0000] "GET /api/user/10 HTTP/1.1" 200 241 "http://localhost:3000/form" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36"
+
+02-12-21 12:57:27 [info]: ::1 - - [02/Dec/2021:07:27:27 +0000] "PUT /api/user/update/10 HTTP/1.1" 200 42 "http://localhost:3000/form" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36"
+
+02-12-21 12:57:28 [info]: ::1 - - [02/Dec/2021:07:27:28 +0000] "GET /form HTTP/1.1" 304 - "http://localhost:3000/form" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36"
+
+02-12-21 12:57:28 [info]: ::1 - - [02/Dec/2021:07:27:28 +0000] "GET /api/user HTTP/1.1" 200 963 "http://localhost:3000/form" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36"
+

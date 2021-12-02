@@ -1,0 +1,44 @@
+version: "3"
+
+services: 
+  mysql_server:
+    image: mysql
+    
+    environment: 
+      - MYSQL_DATABASE=dapi_assg_db
+      - MYSQL_USER=dan
+      - MYSQL_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=secret
+    ports:
+      - "3306:3306"
+    
+    container_name: dapi_assg_mysql
+  app:
+    image: dapiassg_app
+    restart: unless-stopped
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports: 
+      - 3000:3000
+    deploy:
+     replicas: 4
+     restart_policy:
+       max_attempts: 3
+       condition: on-failure       
+     update_config:
+       parallelism: 3
+       delay: 10s
+    volumes: 
+      - .:/app
+      - '/app/node_modules'
+    environment: 
+      - MYSQL_DATABASE=dapi_assg_db
+      - MYSQL_USER=dan
+      - MYSQL_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_HOST=dapi_assg_mysql
+    depends_on: 
+      - mysql_server
+  
+  
