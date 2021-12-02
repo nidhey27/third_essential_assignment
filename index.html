@@ -38,6 +38,7 @@
   </style>
   <body>
     <div class="container">
+      <div class="alert" id="alert"></div>
       <div class="row">
         <div class="col-sm-3">
           <h1>Registration Form</h1>
@@ -87,8 +88,8 @@
             </button>
           </div>
         </div>
-        <div class="col-sm-9">
-          <table class="table table-bordered table-responsive" id="myTable">
+        <div class="col-sm-9" style="overflow-x: scroll;">
+          <table  class="table table-bordered table-responsive" id="myTable">
             <tr>
               <th>ID</th>
               <th>First Name</th>
@@ -103,7 +104,7 @@
           </table>
         </div>
       </div>
-      <div class="alert" id="alert"></div>
+      
     </div>
   </body>
 </html>
@@ -131,7 +132,7 @@
         var cell7 = row.insertCell(6);
         var cell8 = row.insertCell(7);
         var cell9 = row.insertCell(8);
-        cell1.innerHTML = element.id;
+        cell1.innerHTML = element._id;
         cell2.innerHTML = element.firstName;
         cell3.innerHTML = element.lastName;
         cell4.innerHTML = element.dob;
@@ -139,7 +140,7 @@
         cell6.innerHTML = element.email;
 
         // var dataItem={ title: "hello", name: "snoopy" };
-        cell7.innerHTML = `<button onclick='edit(${element.id})' class="btn btn-primary m-2">Edit</button><button onclick="DeleteUser(${element.id})" class="btn btn-danger m-2">Delete</button>`;
+        cell7.innerHTML = `<button onclick='edit("${element._id}")' class="btn btn-primary m-2">Edit</button><button onclick="DeleteUser('${element._id}')" class="btn btn-danger m-2">Delete</button>`;
 
         var options = {
           weekday: "long",
@@ -240,19 +241,20 @@
     let fetchRes = fetch(`http://localhost:3000/api/user/${id}`)
       .then((response) => response.json())
       .then((data) => {
+        
         console.log(data);
-
-        if (data.length > 0) {
+        if (data) {
           document.getElementById("id").value = id;
-          firstName.value = data[0].firstName;
-          lastName.value = data[0].lastName;
-          dob.value = data[0].dob;
-          email.value = data[0].email;
-          phone_number.value = data[0].phone_number;
+          firstName.value = data.firstName;
+          lastName.value = data.lastName;
+          dob.value = data.dob.split('T')[0];
+          email.value = data.email;
+          phone_number.value = data.phone_number;
 
           document.getElementById("add").style.display = "none";
           document.getElementById("edit").style.display = "block";
         } else {
+          
           let msg = document.getElementById("alert");
           msg.classList.add("alert-danger");
           msg.innerHTML = data.message;

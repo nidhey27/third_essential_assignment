@@ -1,6 +1,6 @@
-const db = require("../models");
-const Op = db.Sequelize.Op;
-const Users = db.users;
+const Users = require("../models/users.model");
+// const Op = db.Sequelize.Op;
+// const Users = db.users;
 const { createUSer } = require("../Validators/validation");
 
 // Create New User
@@ -52,11 +52,7 @@ exports.createUser = async (req, res, next) => {
 // Get all user
 exports.getAllUsers = async (req, res, next) => {
   try {
-    let data = await Users.findAll({
-      order: [
-        ['id', 'DESC'],
-    ],
-    });
+    let data = await Users.find({}).sort({_id: -1});
     if (data) return res.json(data);
   } catch (error) {
     return res.status(400).json({
@@ -73,9 +69,7 @@ exports.getUser = async (req, res, next) => {
     if (req.params.id == undefined)
       return res.status(200).json({ status: false, message: "ID is required" });
 
-    let data = await Users.findAll({
-      where: { id: req.params.id }
-    });
+    let data = await Users.findOne({ _id: req.params.id });
     if (data) return res.json(data);
   } catch (error) {
     return res.status(400).json({
@@ -99,15 +93,13 @@ exports.updateUser = async (req, res, next) => {
         .status(200)
         .json({ status: false, message: error.details[0].message });
 
-    let data = await Users.findByPk(req.params.id);
+    let data = await Users.findOne({ _id: req.params.id });
 
     if (!data)
-      return res
-        .status(200)
-        .json({
-          status: false,
-          message: `No user found with ${req.params.id} ID`,
-        });
+      return res.status(200).json({
+        status: false,
+        message: `No user found with ${req.params.id} ID`,
+      });
 
     const user = {
       firstName,
@@ -116,26 +108,45 @@ exports.updateUser = async (req, res, next) => {
       dob,
       phone_number,
     };
-
-    Users.update(
-      { firstName, lastName, email, dob, phone_number },
-      { where: { id: req.params.id } }
+    await Users.findByIdAndUpdate(
+      { _id: (req.params.id) },
+      {
+        $set: {
+          firstName,
+          lastName,
+          email,
+          dob,
+          phone_number,
+        },
+      },
+      { upsert: true }
     )
-      .then((data) => {
-        res.status(200).json({
-          status: true,
-          message: "User Updated..",
-          // data: data,
-        });
+      .then((resp) => {
+        return res.status(200).json({ status: true, message: "Updated!" });
       })
-      .catch((err) => {
-        res.status(500).send({
-          status: false,
-          data: {},
-          message:
-            err.message || "Some error occurred while creating the Tutorial.",
-        });
+      .catch((error) => {
+        return res.status(200).json({ status: false, error: error.message });
       });
+
+    // Users.updateOne(
+    //   { firstName, lastName, email, dob, phone_number },
+    //   { where: { id: req.params.id } }
+    // )
+    //   .then((data) => {
+    //     res.status(200).json({
+    //       status: true,
+    //       message: "User Updated..",
+    //       // data: data,
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     res.status(500).send({
+    //       status: false,
+    //       data: {},
+    //       message:
+    //         err.message || "Some error occurred while creating the Tutorial.",
+    //     });
+    //   });
   } catch (error) {
     return res.status(400).json({
       status: false,
@@ -150,17 +161,15 @@ exports.deleteUser = async (req, res, next) => {
     if (req.params.id == undefined)
       return res.status(200).json({ status: false, message: "ID is required" });
 
-    let data = await Users.findByPk(req.params.id);
+    let data = await Users.findOne({ _id: req.params.id });
 
     if (!data)
-      return res
-        .status(200)
-        .json({
-          status: false,
-          message: `No user found with ${req.params.id} ID`,
-        });
+      return res.status(200).json({
+        status: false,
+        message: `No user found with ${req.params.id} ID`,
+      });
 
-    Users.destroy({ where: { id: req.params.id } })
+    Users.remove({ _id: req.params.id })
       .then((data) => {
         res.status(200).json({
           status: true,

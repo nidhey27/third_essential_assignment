@@ -5,6 +5,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const dotenv = require('dotenv');
 const logger = require('./test')
+const mongoose = require('mongoose');
 // logger.info('Hello again distributed logs');
 dotenv.config();
 
@@ -30,10 +31,17 @@ app.get("/", (req, res, next) => {
   });
 });
 
-const db = require("./models");
-db.sequelize.sync({ force: false }).then(() => {
-  logger.info("Drop and re-sync db.");
-});
+// const db = require("./models");
+// db.sequelize.sync({ force: false }).then(() => {
+//   logger.info("Drop and re-sync db.");
+// });
+
+mongoose.connect(process.env.MONGODB_URL,
+  { useNewUrlParser: true, useUnifiedTopology: true, },
+  (err) => {
+      if (!err) logger.info('MongoDB Connected')
+      else console.log(err)
+  })
 
 require("./routes/users.routes")(app);
 
