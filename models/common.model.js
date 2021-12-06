@@ -13,7 +13,7 @@ const commonSchema = new mongoose.Schema(
     createdAt: Number,
     updatedAt: Number,
   },
-  { timestamps: true }
+  { timestamps: { createdAt: true, updatedAt: true } }
 );
-
-module.exports = commonSchema;
+const cSchema = mongoose.model("Common", commonSchema);
+module.exports = { commonSchema, cSchema };

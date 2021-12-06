@@ -1,7 +1,9 @@
+const { loggers } = require("winston");
 const Users = require("../models/users.model");
 // const Op = db.Sequelize.Op;
 // const Users = db.users;
 const { createUSer } = require("../Validators/validation");
+const logger = require('../test')
 
 // Create New User
 exports.createUser = async (req, res, next) => {
@@ -21,6 +23,7 @@ exports.createUser = async (req, res, next) => {
       email,
       dob,
       phone_number,
+      details: {}
     };
 
     // Save Tutorial in the database
@@ -33,6 +36,7 @@ exports.createUser = async (req, res, next) => {
         });
       })
       .catch((err) => {
+        logger.error(error)
         res.status(500).send({
           status: false,
           data: {},
@@ -107,6 +111,7 @@ exports.updateUser = async (req, res, next) => {
       email,
       dob,
       phone_number,
+      
     };
     await Users.findByIdAndUpdate(
       { _id: (req.params.id) },
@@ -117,14 +122,17 @@ exports.updateUser = async (req, res, next) => {
           email,
           dob,
           phone_number,
+          'details.updatedAt' : new Date()   
         },
       },
       { upsert: true }
     )
       .then((resp) => {
+        console.log(resp);
         return res.status(200).json({ status: true, message: "Updated!" });
       })
       .catch((error) => {
+        logger.error(error)
         return res.status(200).json({ status: false, error: error.message });
       });
 
@@ -178,6 +186,7 @@ exports.deleteUser = async (req, res, next) => {
         });
       })
       .catch((err) => {
+        logger.error(error)
         res.status(500).send({
           status: false,
           data: {},

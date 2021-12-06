@@ -150,8 +150,8 @@
           // hour: "long"
         };
         
-        cell8.innerHTML = new Date(element.createdAt).toDateString()+ ' | ' + new Date(element.createdAt).toLocaleTimeString();
-        cell9.innerHTML = new Date(element.updatedAt).toDateString()+ ' | ' + new Date(element.updatedAt).toLocaleTimeString();
+        cell8.innerHTML = new Date(element.details.createdAt).toDateString()+ ' | ' + new Date(element.details.createdAt).toLocaleTimeString();
+        cell9.innerHTML = new Date(element.details.updatedAt).toDateString()+ ' | ' + new Date(element.details.updatedAt).toLocaleTimeString();
       });
     });
 

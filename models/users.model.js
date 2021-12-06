@@ -44,6 +44,7 @@
 // };
 
 const mongoose = require("mongoose");
+const { commonSchema } = require("./common.model");
 
 const usersSchema = new mongoose.Schema(
   {
@@ -71,18 +72,19 @@ const usersSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    createdBy: {
-      type: String,
-      default: null
-    },
-    updatedBy: {
-      type: String,
-      default: null
-    },
-    createdAt: Number,
-    updatedAt: Number,
+    // createdBy: {
+    //   type: String,
+    //   default: null
+    // },
+    // updatedBy: {
+    //   type: String,
+    //   default: null
+    // },
+    // createdAt: Number,
+    // updatedAt: Number,
+    details: commonSchema,
   },
-  { timestamps: true },
+  // { timestamps: true },
   { collection: "users" }
 );
 
